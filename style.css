@@ -707,8 +707,8 @@ footer > span:last-child {
     gap: 18px;
     font-size: 11px;
   }
-  nav a:nth-child(2),
-  nav a:last-child {
+  nav > a:nth-child(2),
+  nav > a:last-child {
     display: none;
   }
   .wordmark {
@@ -1942,4 +1942,26 @@ html { scroll-behavior:smooth; }
     transition:none;
     transform:none;
   }
+}
+
+/* Navigation alignment and back-to-top contrast. */
+header nav { align-items:center; }
+header nav > a, .projects-toggle { line-height:1.5; }
+.projects-toggle { padding:0; }
+.back-to-top:hover, .back-to-top:focus-visible { color:#7043ae; background:#eee5f6; }
+.back-to-top:hover .top-arrow, .back-to-top:focus-visible .top-arrow { color:#fff; background:#7043ae; }
+
+/* Personal-interest pills. */
+.about .tags span {
+  transition:background-color 220ms ease, color 220ms ease, border-color 220ms ease;
+}
+@media (hover:hover) and (pointer:fine) {
+  .about .tags span:hover {
+    background-color:#7043ae;
+    border-color:#7043ae;
+    color:#fff;
+  }
+}
+@media (prefers-reduced-motion:reduce) {
+  .about .tags span { transition:none; }
 }
