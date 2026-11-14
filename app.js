@@ -77,6 +77,7 @@ const skills = {
 };
 function setLanguage(lang) {
   document.documentElement.lang = lang;
+  try { sessionStorage.setItem("portfolio-language", lang); } catch {}
   document.querySelectorAll("[data-en]").forEach((el) => {
     const value = el.dataset[lang];
     el.replaceChildren(
@@ -108,20 +109,22 @@ function setLanguage(lang) {
       "aria-label",
       lang === "en" ? "Main navigation" : "Navegación principal",
     );
-  document.querySelector("#jobs").innerHTML = jobs
+  document.querySelector("#jobs").innerHTML = jobs.filter(j => !document.body.dataset.company || j.company === document.body.dataset.company)
     .map(
       (j) =>
-        `<article class="job"><div><h3><a class="job-company-link" href="${j.company === "ClickUp" ? "#clickup-details" : "#razor-details"}">${j.company}<span aria-hidden="true"> ↘</span></a></h3><p class="role">QA Engineer</p><span class="date">${j.date[lang === "en" ? 0 : 1]}</span></div><ul>${j[lang].map((item) => `<li>${item}</li>`).join("")}</ul></article>`,
+        `<article class="job"><div><h3><a class="job-company-link" href="${j.company === "ClickUp" ? "clickup.html" : "razor.html"}">${j.company}<span aria-hidden="true"> ↗</span></a></h3><p class="role">QA Engineer</p><span class="date">${j.date[lang === "en" ? 0 : 1]}</span></div><ul>${(document.body.dataset.company ? j[lang] : [j[lang][0], j[lang][1]]).map((item) => `<li>${item}</li>`).join("")}</ul></article>`,
     )
     .join("");
-  document.querySelector("#skills").innerHTML = skills[lang]
+  if (document.querySelector("#skills")) document.querySelector("#skills").innerHTML = skills[lang]
     .map((s) => `<div class="skill-row"><h3>${s[0]}</h3><p>${s[1]}</p></div>`)
     .join("");
 }
 document
   .querySelectorAll(".language button")
   .forEach((b) => b.addEventListener("click", () => setLanguage(b.id)));
-setLanguage("en");
+let initialLanguage = "en";
+try { initialLanguage = sessionStorage.getItem("portfolio-language") === "es" ? "es" : "en"; } catch {}
+setLanguage(initialLanguage);
 if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
   const observer = new IntersectionObserver(
     (entries) =>

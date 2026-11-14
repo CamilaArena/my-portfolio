@@ -1859,3 +1859,27 @@ footer {
   .window-body h2 { font-size:28px; }
   .section-title,.about .section-title { font-size:40px; }
 }
+
+/* Four RazorTech projects, balanced across two columns. */
+.razor-details .client-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
+.razor-web-preview { display:block; background:#293e81; }
+.client-preview.razor-web-preview img { display:block; width:100%; height:calc(100% - 35px); object-fit:cover; object-position:center 35%; }
+.client-card .client-contribution { font-size:12px; color:var(--purple); border-left:2px solid #c4afd8; padding-left:10px; }
+@media(max-width:650px) {
+  .razor-details .client-grid { grid-template-columns:minmax(0,1fr); gap:20px; }
+}
+
+/* Dedicated experience pages. */
+.detail-intro { padding-top:65px; padding-bottom:35px; }
+.detail-intro .eyebrow { margin-top:40px; }
+.detail-intro h1 { font-family:"Instrument Serif", Georgia, serif; font-size:clamp(48px,8vw,88px); margin:12px 0; font-weight:400; }
+.detail-intro p:last-child { font-size:18px; }
+body[data-company] .company-details { padding-top:30px; }
+body[data-company] .razor-details { border-top:0; margin-top:0; padding-top:0; }
+.detail-role { padding-top:55px; padding-bottom:45px; }
+.detail-contact { padding-top:30px; padding-bottom:70px; display:flex; flex-wrap:wrap; gap:24px; align-items:center; }
+.detail-contact h2 { width:100%; margin:0; }
+.detail-contact a { overflow-wrap:anywhere; }
+.client-preview.vali-preview, .client-preview.tbb-preview, .client-preview.cargill-preview { grid-template-rows:minmax(0,1fr); }
+.client-preview.vali-preview img, .client-preview.tbb-preview img, .client-preview.cargill-preview img { min-height:0; max-height:100%; box-sizing:border-box; }
+@media(max-width:650px) { .detail-intro { padding-top:36px; } .detail-contact { flex-direction:column; align-items:flex-start; } }
