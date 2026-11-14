@@ -140,3 +140,18 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
     .querySelectorAll(".section-title,.project,.job,.about-copy")
     .forEach((el) => observer.observe(el));
 }
+
+const projectNav = document.querySelector('.nav-projects');
+const projectToggle = document.querySelector('.projects-toggle');
+const projectMenu = document.querySelector('.projects-menu');
+function showProjects(open) {
+  projectToggle.setAttribute('aria-expanded', String(open));
+  projectMenu.hidden = !open;
+}
+projectToggle.addEventListener('click', () => showProjects(projectMenu.hidden));
+projectNav.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') showProjects(true); });
+projectNav.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse' && !projectNav.contains(document.activeElement)) showProjects(false); });
+projectNav.addEventListener('focusout', e => { if (!projectNav.contains(e.relatedTarget)) showProjects(false); });
+projectNav.addEventListener('keydown', e => { if (e.key === 'Escape') { showProjects(false); projectToggle.focus(); } });
+document.addEventListener('click', e => { if (!projectNav.contains(e.target)) showProjects(false); });
+projectMenu.addEventListener('click', e => { if (e.target.closest('a')) showProjects(false); });

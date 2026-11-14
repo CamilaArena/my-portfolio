@@ -1883,3 +1883,63 @@ body[data-company] .razor-details { border-top:0; margin-top:0; padding-top:0; }
 .client-preview.vali-preview, .client-preview.tbb-preview, .client-preview.cargill-preview { grid-template-rows:minmax(0,1fr); }
 .client-preview.vali-preview img, .client-preview.tbb-preview img, .client-preview.cargill-preview img { min-height:0; max-height:100%; box-sizing:border-box; }
 @media(max-width:650px) { .detail-intro { padding-top:36px; } .detail-contact { flex-direction:column; align-items:flex-start; } }
+
+/* Project navigation and contact controls. */
+.nav-projects { position:relative; }
+.projects-toggle { display:flex; align-items:center; gap:7px; border:0; background:transparent; color:inherit; font:inherit; padding:8px 0; cursor:pointer; }
+.menu-chevron { transition:transform .2s ease; }
+.projects-toggle[aria-expanded="true"] .menu-chevron { transform:rotate(180deg); }
+.projects-menu { position:absolute; z-index:50; top:100%; left:0; width:205px; max-width:calc(100vw - 32px); padding:10px; background:#fffdf8; border:1px solid #d9cee4; border-radius:14px; box-shadow:0 12px 32px #30244218; }
+.projects-menu:not([hidden]) { display:flex; flex-direction:column; gap:3px; }
+.projects-menu a { display:block; padding:11px 12px; border-radius:8px; }
+.projects-menu a:hover, .projects-menu a:focus-visible { background:#eee5f6; color:#7043ae; }
+.projects-toggle:focus-visible, .back-to-top:focus-visible { outline:2px solid #7043ae; outline-offset:5px; }
+.contact-links .back-to-top, .detail-contact .back-to-top { display:inline-flex; align-items:center; gap:12px; padding:10px 12px 10px 18px; border:1px solid #b8a3cb; border-radius:99px; text-decoration:none; transition:background .2s,transform .2s,box-shadow .2s; }
+.top-arrow { display:grid; place-items:center; width:30px; height:30px; border-radius:50%; background:#7043ae; color:#fff; transition:transform .2s; }
+.back-to-top:hover { background:#eee5f6; box-shadow:0 5px 14px #30244215; transform:translateY(-2px); }
+.back-to-top:hover .top-arrow { transform:translateY(-3px); }
+html { scroll-behavior:smooth; }
+@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .back-to-top, .top-arrow, .menu-chevron { transition:none!important; transform:none!important; } }
+
+/* Contact links: gentle lift and a growing underline. */
+:is(.contact-links a, .detail-contact a, a.email, a[href^="mailto:"]):not(.back-to-top) {
+  position:relative;
+  transition:transform 220ms ease, opacity 220ms ease;
+}
+:is(.contact-links a, .detail-contact a, a.email, a[href^="mailto:"]):not(.back-to-top)::after {
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-4px;
+  height:2px;
+  border-radius:2px;
+  background:currentColor;
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform 260ms ease;
+  pointer-events:none;
+}
+:is(.contact-links a, .detail-contact a, a.email, a[href^="mailto:"]):not(.back-to-top):focus-visible {
+  outline:2px solid currentColor;
+  outline-offset:7px;
+  border-radius:3px;
+}
+:is(.contact-links a, .detail-contact a, a.email, a[href^="mailto:"]):not(.back-to-top):focus-visible::after {
+  transform:scaleX(1);
+}
+@media(hover:hover) and (pointer:fine) {
+  :is(.contact-links a, .detail-contact a, a.email, a[href^="mailto:"]):not(.back-to-top):hover {
+    transform:translateY(-3px);
+  }
+  :is(.contact-links a, .detail-contact a, a.email, a[href^="mailto:"]):not(.back-to-top):hover::after {
+    transform:scaleX(1);
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  :is(.contact-links a, .detail-contact a, a.email, a[href^="mailto:"]):not(.back-to-top),
+  :is(.contact-links a, .detail-contact a, a.email, a[href^="mailto:"]):not(.back-to-top)::after {
+    transition:none;
+    transform:none;
+  }
+}
