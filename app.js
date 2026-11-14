@@ -34,14 +34,14 @@ const jobs = [
     date: ["Jun 2023 – Dec 2024", "Jun 2023 – Dic 2024"],
     en: [
       "Participated in discovery, analyzed requirements and user stories, and reviewed Figma designs to identify test scenarios for web and mobile applications.",
-      "Worked on projects across different domains: Vita, a medical cytogenetics platform; Cargill and TBB, focused on quota management and business processes; and RazorWeb.",
+      "Worked on projects across different domains: Vali, a medical cytogenetics platform; Cargill and TBB, focused on quota management and business processes; and RazorWeb.",
       "Validated complex workflows, data visualizations, integrations, and core product functionality.",
       "Performed API testing with Postman and supported regression testing before releases.",
       "Reported and tracked bugs in GitLab with clear reproduction steps.",
     ],
     es: [
       "Participé en discovery, analicé requerimientos e historias de usuario y revisé diseños en Figma para identificar escenarios de prueba en aplicaciones web y mobile.",
-      "Trabajé en proyectos de distintos sectores: Vita, una plataforma de citogenética médica; Cargill y TBB, enfocados en gestión de cupos y procesos de negocio; y RazorWeb.",
+      "Trabajé en proyectos de distintos sectores: Vali, una plataforma de citogenética médica; Cargill y TBB, enfocados en gestión de cupos y procesos de negocio; y RazorWeb.",
       "Validé flujos complejos, visualizaciones de datos, integraciones y funcionalidades centrales del producto.",
       "Realicé pruebas de API con Postman y pruebas de regresión previas a las entregas.",
       "Reporté y seguí bugs en GitLab con pasos claros para reproducirlos.",
