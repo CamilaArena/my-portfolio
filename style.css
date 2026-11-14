@@ -2050,3 +2050,20 @@ header nav > a, .projects-toggle { white-space:nowrap; }
 
 /* Experience overview on the home page. */
 .job .job-summary { margin:0; font-size:16px; line-height:1.85; }
+
+/* Keep the location and specialties separate from the hero illustration on phones. */
+@media (max-width:650px) {
+  .hero > .art { height:500px; margin-top:22px; margin-bottom:0; }
+  .hero-footer {
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+    margin-top:30px;
+    padding:18px 0 22px;
+    line-height:1.7;
+    font-size:9px;
+    letter-spacing:1.2px;
+  }
+  .hero-footer span { width:100%; text-align:left!important; }
+}
