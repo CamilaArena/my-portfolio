@@ -1,8 +1,139 @@
 const jobs = [
-{company:'ClickUp',date:['Mar 2025 – Nov 2026','Mar 2025 – Nov 2026'],en:['Analyzed requirements and user stories, and reviewed Figma designs to identify expected behavior, test scenarios, edge cases, and potential risks.','Designed and executed test cases for web and mobile applications on iOS and Android, managing test runs in TestRail.','Tested AI-powered agents, including conversational flows, prompt variations, edge cases, and response accuracy.','Performed API testing with Postman to validate service functionality and data integrity.','Reported and tracked bugs with clear reproduction steps and evidence, collaborating with Product and Engineering to investigate issues and validate fixes.','Participated in Scrum ceremonies within an Agile environment.'],es:['Analicé requerimientos e historias de usuario y revisé diseños en Figma para identificar comportamientos esperados, escenarios de prueba, casos límite y posibles riesgos.','Diseñé y ejecuté casos de prueba para aplicaciones web y mobile en iOS y Android, gestionando las ejecuciones en TestRail.','Probé agentes de IA, incluyendo flujos conversacionales, variaciones de prompts, casos límite y precisión de las respuestas.','Realicé pruebas de API con Postman para validar la funcionalidad de los servicios y la integridad de los datos.','Reporté y seguí bugs con pasos claros y evidencia, colaborando con Producto y Desarrollo para investigar problemas y validar correcciones.','Participé en ceremonias Scrum dentro de un entorno ágil.']},
-{company:'RazorTech',date:['Jun 2023 – Dec 2024','Jun 2023 – Dic 2024'],en:['Participated in discovery, analyzed requirements and user stories, and reviewed Figma designs to identify test scenarios for web and mobile applications.','Worked on projects across different domains: Vita, a medical cytogenetics platform; Cargill and TBB, focused on quota management and business processes; and RazorWeb.','Validated complex workflows, data visualizations, integrations, and core product functionality.','Performed API testing with Postman and supported regression testing before releases.','Reported and tracked bugs in GitLab with clear reproduction steps.'],es:['Participé en discovery, analicé requerimientos e historias de usuario y revisé diseños en Figma para identificar escenarios de prueba en aplicaciones web y mobile.','Trabajé en proyectos de distintos sectores: Vita, una plataforma de citogenética médica; Cargill y TBB, enfocados en gestión de cupos y procesos de negocio; y RazorWeb.','Validé flujos complejos, visualizaciones de datos, integraciones y funcionalidades centrales del producto.','Realicé pruebas de API con Postman y pruebas de regresión previas a las entregas.','Reporté y seguí bugs en GitLab con pasos claros para reproducirlos.']}];
-const skills={en:[['QA & Testing','Requirements analysis · Test case design & execution · Web & mobile testing · Bug reporting · Gherkin · SQL'],['API Testing','Postman · Service functionality · Data validation'],['Automation','Cypress — completed course · Selenium — academic experience · Playwright — ongoing learning & personal project'],['Tools','TestRail · Postman · Git · GitHub · GitLab · Figma (design review)'],['Programming','Java · JavaScript · Python — foundational knowledge']],es:[['QA & Testing','Análisis de requerimientos · Diseño y ejecución de casos · Testing web y mobile · Reporte de bugs · Gherkin · SQL'],['API Testing','Postman · Funcionalidad de servicios · Validación de datos'],['Automation','Cypress — curso completado · Selenium — experiencia académica · Playwright — aprendizaje y proyecto personal'],['Herramientas','TestRail · Postman · Git · GitHub · GitLab · Figma (revisión de diseños)'],['Programación','Java · JavaScript · Python — conocimientos básicos']]};
-function setLanguage(lang){document.documentElement.lang=lang;document.querySelectorAll('[data-en]').forEach(el=>{const value=el.dataset[lang];el.replaceChildren(...value.split('\\n').flatMap((line,i)=>i?[document.createElement('br'),document.createTextNode(line)]:[document.createTextNode(line)]));});document.querySelectorAll('.section-title, .contact h2').forEach(el=>{const last=el.lastChild;if(last && last.nodeType===3){const em=document.createElement('em');em.textContent=last.textContent;el.replaceChild(em,last)}});document.querySelectorAll('.language button').forEach(b=>b.setAttribute('aria-pressed',b.id===lang));document.querySelector('.skip').textContent=lang==='en'?'Skip to content':'Ir al contenido';document.querySelector('nav').setAttribute('aria-label',lang==='en'?'Main navigation':'Navegación principal');document.querySelector('#jobs').innerHTML=jobs.map(j=>`<article class="job"><div><h3><a class="job-company-link" href="${j.company==='ClickUp'?'#clickup-details':'#razor-details'}">${j.company}<span aria-hidden="true"> ↘</span></a></h3><p class="role">QA Engineer</p><span class="date">${j.date[lang==='en'?0:1]}</span></div><ul>${j[lang].map(item=>`<li>${item}</li>`).join('')}</ul></article>`).join('');document.querySelector('#skills').innerHTML=skills[lang].map(s=>`<div class="skill-row"><h3>${s[0]}</h3><p>${s[1]}</p></div>`).join('');}
-document.querySelectorAll('.language button').forEach(b=>b.addEventListener('click',()=>setLanguage(b.id)));setLanguage('en');
-if(!matchMedia('(prefers-reduced-motion: reduce)').matches){const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('reveal');observer.unobserve(e.target)}}),{threshold:.08});document.querySelectorAll('.section-title,.project,.job,.about-copy').forEach(el=>observer.observe(el));}
-
+  {
+    company: "ClickUp",
+    date: ["Mar 2025 – Nov 2026", "Mar 2025 – Nov 2026"],
+    en: [
+      "Analyzed requirements and user stories, and reviewed Figma designs to identify expected behavior, test scenarios, edge cases, and potential risks.",
+      "Designed and executed test cases for web and mobile applications on iOS and Android, managing test runs in TestRail.",
+      "Tested AI-powered agents, including conversational flows, prompt variations, edge cases, and response accuracy.",
+      "Performed API testing with Postman to validate service functionality and data integrity.",
+      "Reported and tracked bugs with clear reproduction steps and evidence, collaborating with Product and Engineering to investigate issues and validate fixes.",
+      "Participated in Scrum ceremonies within an Agile environment.",
+    ],
+    es: [
+      "Analicé requerimientos e historias de usuario y revisé diseños en Figma para identificar comportamientos esperados, escenarios de prueba, casos límite y posibles riesgos.",
+      "Diseñé y ejecuté casos de prueba para aplicaciones web y mobile en iOS y Android, gestionando las ejecuciones en TestRail.",
+      "Probé agentes de IA, incluyendo flujos conversacionales, variaciones de prompts, casos límite y precisión de las respuestas.",
+      "Realicé pruebas de API con Postman para validar la funcionalidad de los servicios y la integridad de los datos.",
+      "Reporté y seguí bugs con pasos claros y evidencia, colaborando con Producto y Desarrollo para investigar problemas y validar correcciones.",
+      "Participé en ceremonias Scrum dentro de un entorno ágil.",
+    ],
+  },
+  {
+    company: "RazorTech",
+    date: ["Jun 2023 – Dec 2024", "Jun 2023 – Dic 2024"],
+    en: [
+      "Participated in discovery, analyzed requirements and user stories, and reviewed Figma designs to identify test scenarios for web and mobile applications.",
+      "Worked on projects across different domains: Vita, a medical cytogenetics platform; Cargill and TBB, focused on quota management and business processes; and RazorWeb.",
+      "Validated complex workflows, data visualizations, integrations, and core product functionality.",
+      "Performed API testing with Postman and supported regression testing before releases.",
+      "Reported and tracked bugs in GitLab with clear reproduction steps.",
+    ],
+    es: [
+      "Participé en discovery, analicé requerimientos e historias de usuario y revisé diseños en Figma para identificar escenarios de prueba en aplicaciones web y mobile.",
+      "Trabajé en proyectos de distintos sectores: Vita, una plataforma de citogenética médica; Cargill y TBB, enfocados en gestión de cupos y procesos de negocio; y RazorWeb.",
+      "Validé flujos complejos, visualizaciones de datos, integraciones y funcionalidades centrales del producto.",
+      "Realicé pruebas de API con Postman y pruebas de regresión previas a las entregas.",
+      "Reporté y seguí bugs en GitLab con pasos claros para reproducirlos.",
+    ],
+  },
+];
+const skills = {
+  en: [
+    [
+      "QA & Testing",
+      "Requirements analysis · Test case design & execution · Web & mobile testing · Bug reporting · Gherkin · SQL",
+    ],
+    ["API Testing", "Postman · Service functionality · Data validation"],
+    [
+      "Automation",
+      "Cypress — completed course · Selenium — academic experience · Playwright — ongoing learning & personal project",
+    ],
+    [
+      "Tools",
+      "TestRail · Postman · Git · GitHub · GitLab · Figma (design review)",
+    ],
+    ["Programming", "Java · JavaScript · Python — foundational knowledge"],
+  ],
+  es: [
+    [
+      "QA & Testing",
+      "Análisis de requerimientos · Diseño y ejecución de casos · Testing web y mobile · Reporte de bugs · Gherkin · SQL",
+    ],
+    [
+      "API Testing",
+      "Postman · Funcionalidad de servicios · Validación de datos",
+    ],
+    [
+      "Automation",
+      "Cypress — curso completado · Selenium — experiencia académica · Playwright — aprendizaje y proyecto personal",
+    ],
+    [
+      "Herramientas",
+      "TestRail · Postman · Git · GitHub · GitLab · Figma (revisión de diseños)",
+    ],
+    ["Programación", "Java · JavaScript · Python — conocimientos básicos"],
+  ],
+};
+function setLanguage(lang) {
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-en]").forEach((el) => {
+    const value = el.dataset[lang];
+    el.replaceChildren(
+      ...value
+        .split("\\n")
+        .flatMap((line, i) =>
+          i
+            ? [document.createElement("br"), document.createTextNode(line)]
+            : [document.createTextNode(line)],
+        ),
+    );
+  });
+  document.querySelectorAll(".section-title, .contact h2").forEach((el) => {
+    const last = el.lastChild;
+    if (last && last.nodeType === 3) {
+      const em = document.createElement("em");
+      em.textContent = last.textContent;
+      el.replaceChild(em, last);
+    }
+  });
+  document
+    .querySelectorAll(".language button")
+    .forEach((b) => b.setAttribute("aria-pressed", b.id === lang));
+  document.querySelector(".skip").textContent =
+    lang === "en" ? "Skip to content" : "Ir al contenido";
+  document
+    .querySelector("nav")
+    .setAttribute(
+      "aria-label",
+      lang === "en" ? "Main navigation" : "Navegación principal",
+    );
+  document.querySelector("#jobs").innerHTML = jobs
+    .map(
+      (j) =>
+        `<article class="job"><div><h3><a class="job-company-link" href="${j.company === "ClickUp" ? "#clickup-details" : "#razor-details"}">${j.company}<span aria-hidden="true"> ↘</span></a></h3><p class="role">QA Engineer</p><span class="date">${j.date[lang === "en" ? 0 : 1]}</span></div><ul>${j[lang].map((item) => `<li>${item}</li>`).join("")}</ul></article>`,
+    )
+    .join("");
+  document.querySelector("#skills").innerHTML = skills[lang]
+    .map((s) => `<div class="skill-row"><h3>${s[0]}</h3><p>${s[1]}</p></div>`)
+    .join("");
+}
+document
+  .querySelectorAll(".language button")
+  .forEach((b) => b.addEventListener("click", () => setLanguage(b.id)));
+setLanguage("en");
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  const observer = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("reveal");
+          observer.unobserve(e.target);
+        }
+      }),
+    { threshold: 0.08 },
+  );
+  document
+    .querySelectorAll(".section-title,.project,.job,.about-copy")
+    .forEach((el) => observer.observe(el));
+}
