@@ -1,3 +1,13 @@
+const experienceSummaries = {
+  "ClickUp": {
+    "en": "Performed QA for a SaaS platform for task management and collaboration, covering web, iOS, and Android. My work included requirements analysis, test case design and execution in TestRail, API testing with Postman, and validation of AI-powered agents. I worked closely with Product and Engineering to investigate bugs, verify fixes, and support product quality within an Agile team.",
+    "es": "Realicé QA en una plataforma SaaS de gestión de tareas y colaboración, tanto en web como en iOS y Android. Mi trabajo abarcó análisis de requerimientos, diseño y ejecución de casos en TestRail, pruebas de API con Postman y validación de agentes de IA. Colaboré con Producto y Desarrollo en la investigación de bugs, la verificación de correcciones y el cuidado de la calidad del producto dentro de un equipo ágil."
+  },
+  "RazorTech": {
+    "en": "Worked on QA for web and mobile projects across healthcare, logistics, and corporate websites. I participated in discovery and requirements analysis, designed test scenarios, and validated workflows, integrations, and data visualizations. I also performed API testing with Postman, supported regression testing before releases, and reported and tracked bugs in GitLab.",
+    "es": "Trabajé en QA para proyectos web y mobile de salud, logística y sitios institucionales. Participé en discovery y análisis de requerimientos, diseñé escenarios de prueba y validé flujos, integraciones y visualizaciones de datos. También realicé pruebas de API con Postman, colaboré con las pruebas de regresión previas a las entregas y reporté y seguí bugs en GitLab."
+  }
+};
 const jobs = [
   {
     company: "ClickUp",
@@ -112,7 +122,7 @@ function setLanguage(lang) {
   document.querySelector("#jobs").innerHTML = jobs.filter(j => !document.body.dataset.company || j.company === document.body.dataset.company)
     .map(
       (j) =>
-        `<article class="job"><div><h3><a class="job-company-link" href="${j.company === "ClickUp" ? "clickup.html" : "razor.html"}">${j.company}<span aria-hidden="true"> ↗</span></a></h3><p class="role">QA Engineer</p><span class="date">${j.date[lang === "en" ? 0 : 1]}</span></div><ul>${(document.body.dataset.company ? j[lang] : [j[lang][0], j[lang][1]]).map((item) => `<li>${item}</li>`).join("")}</ul></article>`,
+        `<article class="job"><div><h3><a class="job-company-link" href="${j.company === "ClickUp" ? "clickup.html" : "razor.html"}">${j.company}<span aria-hidden="true"> ↗</span></a></h3><p class="role">QA Engineer</p><span class="date">${j.date[lang === "en" ? 0 : 1]}</span></div>${document.body.dataset.company ? `<ul>${j[lang].map((item) => `<li>${item}</li>`).join("")}</ul>` : `<p class="job-summary">${experienceSummaries[j.company][lang]}</p>`}</article>`,
     )
     .join("");
   if (document.querySelector("#skills")) document.querySelector("#skills").innerHTML = skills[lang]
