@@ -155,3 +155,27 @@ projectNav.addEventListener('focusout', e => { if (!projectNav.contains(e.relate
 projectNav.addEventListener('keydown', e => { if (e.key === 'Escape') { showProjects(false); projectToggle.focus(); } });
 document.addEventListener('click', e => { if (!projectNav.contains(e.target)) showProjects(false); });
 projectMenu.addEventListener('click', e => { if (e.target.closest('a')) showProjects(false); });
+
+const mobileToggle = document.querySelector('.mobile-menu-toggle');
+const siteHeader = document.querySelector('header');
+const mainNavigation = document.querySelector('#main-navigation');
+const mobileViewport = matchMedia('(max-width: 650px)');
+function setMobileMenu(open, returnFocus = false) {
+  siteHeader.classList.toggle('mobile-menu-open', open);
+  mobileToggle.setAttribute('aria-expanded', String(open));
+  if (!open) showProjects(false);
+  if (returnFocus) mobileToggle.focus();
+}
+mobileToggle.addEventListener('click', () => setMobileMenu(mobileToggle.getAttribute('aria-expanded') !== 'true'));
+mainNavigation.addEventListener('click', event => {
+  if (mobileViewport.matches && event.target.closest('a')) setMobileMenu(false, true);
+});
+siteHeader.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && mobileViewport.matches && siteHeader.classList.contains('mobile-menu-open')) {
+    setMobileMenu(false, true);
+  }
+});
+document.addEventListener('click', event => {
+  if (!siteHeader.contains(event.target) && mobileViewport.matches) setMobileMenu(false);
+});
+mobileViewport.addEventListener('change', () => setMobileMenu(false));
