@@ -2067,3 +2067,24 @@ header nav > a, .projects-toggle { white-space:nowrap; }
   }
   .hero-footer span { width:100%; text-align:left!important; }
 }
+
+/* Freelance QA services */
+.freelance { background:var(--lilac); border-block:1px solid var(--line); }
+.freelance-heading { display:grid; grid-template-columns:1.15fr 1fr; gap:48px; align-items:center; margin-bottom:40px; }
+.freelance-heading .section-title { margin:0; font-size:clamp(36px,4.3vw,58px); }
+.freelance-heading > p { margin:0; max-width:48ch; font-size:17px; line-height:1.8; }
+.freelance-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
+.freelance-card { min-width:0; padding:30px; background:var(--paper); border:1px solid #d0bfdf; border-radius:16px; transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease; }
+.freelance-icon { display:inline-flex; align-items:center; justify-content:center; width:52px; height:52px; background:var(--lilac); color:var(--purple); border-radius:14px; margin-bottom:22px; }
+.freelance-card h3 { margin:0 0 14px; font-family:"DM Sans",sans-serif; font-size:20px; line-height:1.4; font-weight:600; }
+.freelance-card p { margin:0; font-size:16px; line-height:1.75; color:#5e5269; }
+.freelance-cta { display:flex; align-items:center; justify-content:space-between; gap:32px; margin-top:36px; padding-top:32px; border-top:1px solid #cbbbda; }
+.freelance-cta h3 { margin:0 0 8px; font-family:"Instrument Serif",Georgia,serif; font-size:34px; font-weight:400; }
+.freelance-cta p { margin:0; max-width:58ch; font-size:16px; }
+.freelance .freelance-button { flex-shrink:0; text-align:center; white-space:normal; max-width:100%; font-size:16px; }
+header nav .freelance-nav-link { color:var(--purple); }
+@media(hover:hover) and (pointer:fine) { .freelance-card:hover { transform:translateY(-4px); border-color:var(--purple); box-shadow:0 12px 25px #3024420c; } }
+@media(min-width:651px) { header { height:auto; min-height:94px; padding-top:16px; padding-bottom:16px; } header nav { flex-wrap:wrap; justify-content:center; gap:12px 20px; } }
+@media(max-width:950px) { .freelance-heading { grid-template-columns:1fr; gap:24px; } .freelance-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .freelance-cta { align-items:flex-start; flex-direction:column; gap:24px; } }
+@media(max-width:650px) { .freelance-grid { grid-template-columns:minmax(0,1fr); gap:16px; } .freelance-card { padding:26px; } .freelance-heading { margin-bottom:30px; } .freelance .freelance-button { width:100%; } }
+@media(prefers-reduced-motion:reduce) { .freelance-card { transition:none; } .freelance-card:hover { transform:none; } }
